@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="mobile-blocker">
-<div id="mobile-welcome">
-    <p class="welcome-text">Merci d'utiliser votre PC pour accéder à ce site :)</p>
-    
-    <pre class="ascii-boat">
+        <div class="mobile-content">
+            <p class="welcome-text">Merci d'utiliser votre PC pour accéder à ce site :)</p>
+            <pre class="ascii-boat">
                    v  ~.      v
           v           /|
                      / |          v
               v     /__|__
                   \--------/
 ~~~~~~~~~~~~~~~~~~~`~~~~~~'~~~~~~~~~~~~~~~
-</div>
-
-    <div class="finder-window" id="main-finder">
+            </pre>
+        </div>
+    </div> <div class="finder-window" id="main-finder">
         <div class="toolbar">
             <div class="traffic-lights">
                 <div class="dot red" onclick="closeWin('main-finder')"></div>
@@ -96,12 +96,7 @@
     </div>
 
     <div id="note-window" class="finder-window secondary-window">
-        <div class="toolbar">
-            <div class="traffic-lights">
-                <div class="dot red" onclick="closeWin('note-window')"></div>
-            </div>
-            <div class="window-title">notes.txt</div>
-        </div>
+        <div class="toolbar"><div class="traffic-lights"><div class="dot red" onclick="closeWin('note-window')"></div></div><div class="window-title">notes.txt</div></div>
         <textarea id="note-textarea" readonly></textarea> 
     </div>
 
