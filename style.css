@@ -62,19 +62,12 @@ body {
         opacity: 0.9;
     }
 
-    .ascii-boat {
-        color: white !important;
-        font-family: "SF Mono", "Monaco", "Courier New", monospace !important;
-        
-        /* Les 3 lignes magiques pour l'alignement */
-        font-size: 10px;           /* Si c'est encore décalé, essaie 9px */
-        line-height: 1.1 !important; /* Resserre les lignes verticalement */
-        letter-spacing: 0px;       /* Empêche l'espacement entre les lettres */
-        
-        white-space: pre !important;
-        display: block;
-        tab-size: 0;               /* Désactive les tabulations si elles traînent */
-    }
+    .mobile-boat-img {
+            max-width: 250px;  /* Ajuste la largeur maximum */
+            height: auto;      /* Garde les proportions */
+            margin-top: 30px;  /* Espace au-dessus */
+            display: block;    /* Pour le centrage */
+        }
 }
 
 /* --- 2. FENÊTRE PRINCIPALE (FINDER) --- */
