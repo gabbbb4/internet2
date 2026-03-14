@@ -1,3 +1,4 @@
+/* --- VARIABLES ET RESET --- */
 :root {
     --sidebar-bg: rgba(246, 246, 246, 0.8);
     --main-bg: #ffffff;
@@ -17,77 +18,62 @@ body {
     overflow: hidden;
 }
 
-/* --- 1. ÉTAT PAR DÉFAUT (PC) --- */
+/* --- 1. GESTION MOBILE (LE BLOQUEUR) --- */
 #mobile-blocker {
-    display: none; /* On cache tout sur PC */
+    display: none; /* Caché par défaut sur PC */
 }
 
-/* --- 2. ÉTAT MOBILE (Téléphone) --- */
 @media (max-width: 768px) {
-    body {
-        /* On force le fond noir du body sur mobile pour qu'aucun espace blanc n'apparaisse */
-        background: #000 !important; 
-    }
-
     #mobile-blocker {
-        display: flex !important; /* On affiche le bloqueur */
+        display: flex !important;
         position: fixed;
-        top: 0;
+        top: 0; 
         left: 0;
-        width: 100vw;
+        width: 100vw; 
         height: 100vh;
-        background: #000; /* Fond noir total */
-        
-        /* --- CHANGEMENT DE POLICE GLOBAL (LOOK NERD) --- */
-        /* On utilise 'monospace' pour que toutes les lettres aient la même largeur */
-        font-family: 'Courier New', Courier, monospace;
-        color: white; /* Tout le texte par défaut est blanc */
-        
-        z-index: 10000; /* On augmente pour être sûr d'être devant tout */
+        background: #000 !important;
+        z-index: 10000; /* Par-dessus tout */
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-    }
-
-    /* On cache le Finder et le Dock pour qu'ils ne chargent pas derrière */
-    #main-finder, #dock, .secondary-window {
-        display: none !important;
-    }
-
-    /* Style pour le titre "System Error" (si tu l'as ajouté) */
-    .error-title {
-        font-size: 28px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        letter-spacing: 2px; /* Espacement pour le look 'code' */
         color: white;
+        /* POLICE NERD */
+        font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Courier New", monospace !important;
+    }
+
+    /* Cache le reste du site sur mobile */
+    #main-finder, #dock, .secondary-window { 
+        display: none !important; 
+    }
+
+    .error-title {
+        font-size: 24px;
+        letter-spacing: 4px;
+        margin-bottom: 10px;
+        font-weight: bold;
     }
 
     .welcome-text {
-        font-size: 16px;
+        font-size: 14px;
         margin-bottom: 20px;
         padding: 0 30px;
-        line-height: 1.4;
-        color: #fff; /* Message principal en blanc */
-        opacity: 0.8; /* Légère transparence pour le message secondaire */
+        line-height: 1.5;
+        opacity: 0.9;
     }
 
-   /* --- REMETTRE LE BATEAU EN BLANC ET MONOSPACE STICTE --- */
-.ascii-boat {
-    color: white !important; /* Bateau blanc, on force avec !important */
-    
-    /* --- CHANGEMENT DE POLICE STRICT (LOOK NERD) --- */
-    /* 'Courier New' et 'Courier' sont les polices monospace les plus compatibles. */
-    /* 'monospace' est la valeur de secours si les autres ne sont pas dispos. */
-    font-family: 'Courier New', Courier, monospace !important;
-    
-    font-size: 12px; /* Un peu plus petit pour mobile */
-    line-height: 1.2;
-    margin-top: 30px;
-    white-space: pre !important; /* Garde les espaces TELS QUELS, on force avec !important */
+    .ascii-boat {
+        color: white !important;
+        font-size: 10px; /* Taille réduite pour éviter les retours à la ligne */
+        line-height: 1;  /* Resserre les lignes pour le dessin */
+        white-space: pre !important; 
+        margin-top: 20px;
+        display: block;
+        font-family: inherit; /* Utilise la police nerd du parent */
+    }
 }
-/* --- FENÊTRE PRINCIPALE --- */
+
+/* --- 2. FENÊTRE PRINCIPALE (FINDER) --- */
 #main-finder {
     width: 900px;
     height: 550px;
@@ -101,9 +87,10 @@ body {
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.2);
+    transition: transform 0.4s ease, opacity 0.3s;
 }
 
-/* --- TOOLBAR --- */
+/* --- 3. BARRE D'OUTILS (TOOLBAR) --- */
 .toolbar {
     height: 52px;
     background: #f1f1f1;
@@ -111,6 +98,7 @@ body {
     align-items: center;
     padding: 0 15px;
     border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
 }
 
 .traffic-lights { display: flex; gap: 8px; margin-right: 20px; }
@@ -118,29 +106,58 @@ body {
 .red { background: #ff5f56; }
 .yellow { background: #ffbd2e; }
 .green { background: #27c93f; }
-.window-title { font-size: 13px; font-weight: 600; color: #555; flex: 1; text-align: center; margin-right: 60px; }
 
-/* --- CONTENU --- */
+.window-title { 
+    font-size: 13px; 
+    font-weight: 600; 
+    color: #555; 
+    flex: 1; 
+    text-align: center; 
+    margin-right: 60px; 
+}
+
+/* --- 4. CONTENU INTERNE --- */
 .container { display: flex; flex: 1; overflow: hidden; }
-.sidebar { width: 180px; background: var(--sidebar-bg); border-right: 1px solid var(--border-color); padding: 15px 8px; flex-shrink: 0; }
-.sidebar-item { padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+
+.sidebar { 
+    width: 180px; 
+    background: var(--sidebar-bg); 
+    border-right: 1px solid var(--border-color); 
+    padding: 15px 8px; 
+    flex-shrink: 0; 
+}
+
+.sidebar-item { padding: 6px 12px; border-radius: 6px; font-size: 13px; cursor: pointer; margin-bottom: 2px; }
+.sidebar-item:hover { background: rgba(0,0,0,0.05); }
 .sidebar-item.active { background: rgba(0,0,0,0.1); font-weight: 600; }
+
 .main-content { flex: 1; display: flex; flex-direction: column; background: white; overflow-y: auto; }
-.list-header { display: flex; padding: 0 10px; border-bottom: 1px solid var(--border-color); height: 25px; align-items: center; font-size: 11px; color: #888; }
+
+.list-header { 
+    display: flex; 
+    padding: 0 10px; 
+    border-bottom: 1px solid var(--border-color); 
+    height: 25px; 
+    align-items: center; 
+    font-size: 11px; 
+    color: #888; 
+    flex-shrink: 0;
+}
+
 .file-row { display: flex; align-items: center; padding: 6px 10px; font-size: 13px; cursor: pointer; }
 .file-row:hover { background: var(--accent-blue); color: white; }
 .col-name { flex: 3; display: flex; align-items: center; gap: 10px; }
 .col-meta { flex: 2; font-size: 12px; opacity: 0.7; }
 .col-size { flex: 1; text-align: right; opacity: 0.7; }
 
-/* --- SECONDAIRES --- */
+/* --- 5. FENÊTRES SECONDAIRES (IMAGES / NOTES) --- */
 .secondary-window {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none; 
-    flex-direction: column !important; 
+    flex-direction: column !important; /* Force l'empilement vertical de la barre et de l'image */
     z-index: 1000;
     width: fit-content; 
     height: fit-content;
@@ -159,9 +176,41 @@ body {
 
 .image-view { display: block; line-height: 0; background: #000; }
 .image-view img { display: block; width: auto; height: auto; max-width: 100%; max-height: 75vh; }
-textarea { width: 400px; height: 300px; border: none; padding: 15px; font-family: monospace; outline: none; }
 
-/* --- DOCK --- */
-#dock { position: fixed; bottom: 15px; background: rgba(255,255,255,0.4); backdrop-filter: blur(15px); padding: 8px 15px; border-radius: 18px; display: flex; gap: 15px; border: 1px solid rgba(255,255,255,0.3); z-index: 2000; }
-.dock-icon { font-size: 32px; cursor: pointer; transition: 0.2s; }
-.dock-icon:hover { transform: scale(1.3) translateY(-10px); }
+textarea { 
+    width: 400px; 
+    height: 300px; 
+    border: none; 
+    padding: 15px; 
+    font-family: 'Courier New', monospace; 
+    outline: none; 
+    resize: none;
+}
+
+/* --- 6. LE DOCK --- */
+#dock { 
+    position: fixed; 
+    bottom: 15px; 
+    background: rgba(255,255,255,0.4); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px);
+    padding: 8px 15px; 
+    border-radius: 18px; 
+    display: flex; 
+    gap: 15px; 
+    border: 1px solid rgba(255,255,255,0.3); 
+    z-index: 2000; 
+}
+
+.dock-icon { 
+    font-size: 32px; 
+    cursor: pointer; 
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+}
+
+.dock-icon:hover { 
+    transform: scale(1.3) translateY(-10px); 
+}
+
+/* Classes pour les animations JS */
+.minimized { transform: scale(0.1) translateY(800px); opacity: 0; pointer-events: none; }
