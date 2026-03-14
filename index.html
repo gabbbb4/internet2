@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Finder Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="mobile-blocker">
+    <div class="error-dialog">
+        <div class="error-header">
+            <div class="dot red"></div>
+            <span>System Error</span>
+        </div>
+        <div class="error-content">
+            <p>⚠️ <strong>Incompatibilité matérielle</strong></p>
+            <p>Ce système d'exploitation nécessite une résolution d'écran plus large et un clavier physique.</p>
+            <p>Merci d'utiliser votre PC pour accéder à cette session.</p>
+        </div>
+    </div>
+    </div>
+
+    <div class="finder-window" id="main-finder">
+        <div class="toolbar">
+            <div class="traffic-lights">
+                <div class="dot red" onclick="closeWin('main-finder')"></div>
+                <div class="dot yellow" onclick="minWin('main-finder')"></div>
+                <div class="dot green" onclick="fullWin('main-finder')"></div>
+            </div>
+            <div class="window-title" id="finder-title">Bureau</div>
+        </div>
+
+        <div class="container">
+            <aside class="sidebar">
+                <div class="sidebar-item active" id="btn-bureau" onclick="nav('bureau', this)">🖥️ Bureau</div>
+                <div class="sidebar-item" id="btn-docs" onclick="nav('documents', this)">📄 Documents</div>
+            </aside>
+
+            <main class="main-content">
+                <div class="list-header">
+                    <div style="flex: 3; padding-left: 30px;">Nom</div>
+                    <div style="flex: 2;">Date</div>
+                    <div style="flex: 1; text-align: right; padding-right: 10px;">Taille</div>
+                </div>
+
+                <div class="file-list">
+                    <div id="cat-bureau" class="cat-group">
+                        <div class="file-row" ondblclick="openNote()">
+                            <div class="col-name"><span class="icon-small">📝</span> notes.txt</div>
+                            <div class="col-meta">14 Mars 2026</div>
+                            <div class="col-size">12 Ko</div>
+                        </div>
+                    </div>
+
+                    <div id="cat-documents" class="cat-group" style="display: none;">
+                        <div class="file-row" ondblclick="nav('folder-bateau', null, 'Bateau')">
+                            <div class="col-name"><span class="icon-small">📂</span> Bateau</div>
+                            <div class="col-meta">14 Mars 2026</div>
+                            <div class="col-size">--</div>
+                        </div>
+                        <div class="file-row" ondblclick="nav('folder-abi', null, 'Abi')">
+                            <div class="col-name"><span class="icon-small">📂</span> Abi</div>
+                            <div class="col-meta">14 Mars 2026</div>
+                            <div class="col-size">--</div>
+                        </div>
+                    </div>
+
+                    <div id="cat-folder-bateau" class="cat-group" style="display: none;">
+                        <div class="file-row" ondblclick="openImg('image-window')">
+                            <div class="col-name"><span class="icon-small">🖼️</span> bateau.jpg</div>
+                            <div class="col-meta">14 mars 2026</div>
+                            <div class="col-size">2,4 Mo</div>
+                        </div>
+                    </div>
+
+                    <div id="cat-folder-abi" class="cat-group" style="display: none;">
+                        <div class="file-row" ondblclick="openImg('abi-window')">
+                            <div class="col-name"><span class="icon-small">🖼️</span> abi.jpg</div>
+                            <div class="col-meta">14 Mars 2026</div>
+                            <div class="col-size">1,8 Mo</div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="image-window" class="finder-window secondary-window">
+        <div class="toolbar"><div class="traffic-lights"><div class="dot red" onclick="closeWin('image-window')"></div></div><div class="window-title">bateau.jpg</div></div>
+        <div class="image-view"><img src="photos/bateau.jpeg"></div>
+    </div>
+
+    <div id="abi-window" class="finder-window secondary-window">
+        <div class="toolbar"><div class="traffic-lights"><div class="dot red" onclick="closeWin('abi-window')"></div></div><div class="window-title">abi.jpg</div></div>
+        <div class="image-view"><img src="photos/abi_dslejardin.JPG"></div>
+    </div>
+
+    <div id="note-window" class="finder-window secondary-window">
+        <div class="toolbar">
+            <div class="traffic-lights">
+                <div class="dot red" onclick="closeWin('note-window')"></div>
+            </div>
+            <div class="window-title">notes.txt</div>
+        </div>
+        <textarea id="note-textarea" readonly></textarea> 
+    </div>
+
+    <div id="dock">
+        <div class="dock-icon" onclick="restWin('main-finder')">📁</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
