@@ -64,12 +64,16 @@ body {
 
     .ascii-boat {
         color: white !important;
-        font-size: 10px; /* Taille réduite pour éviter les retours à la ligne */
-        line-height: 1;  /* Resserre les lignes pour le dessin */
-        white-space: pre !important; 
-        margin-top: 20px;
+        font-family: "SF Mono", "Monaco", "Courier New", monospace !important;
+        
+        /* Les 3 lignes magiques pour l'alignement */
+        font-size: 10px;           /* Si c'est encore décalé, essaie 9px */
+        line-height: 1.1 !important; /* Resserre les lignes verticalement */
+        letter-spacing: 0px;       /* Empêche l'espacement entre les lettres */
+        
+        white-space: pre !important;
         display: block;
-        font-family: inherit; /* Utilise la police nerd du parent */
+        tab-size: 0;               /* Désactive les tabulations si elles traînent */
     }
 }
 
