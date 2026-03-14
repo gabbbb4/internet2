@@ -38,6 +38,7 @@
         font-family: -apple-system, sans-serif;
     }
 
+
     .error-header {
         background: #ddd;
         padding: 10px;
@@ -55,6 +56,15 @@
         color: #333;
         line-height: 1.5;
     }
+}
+
+.ascii-boat {
+    font-family: 'Courier New', Courier, monospace; /* Largeur fixe stricte */
+    color: #00d2ff; /* Un bleu "cyan" pour rappeler l'océan et la tech */
+    font-size: 16px;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); /* Effet néon léger */
+    white-space: pre; /* Garde les espaces tels quels */
 }
 
 :root {
