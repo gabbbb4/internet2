@@ -27,54 +27,44 @@ body {
     #mobile-blocker {
         display: flex !important;
         position: fixed;
-        top: 0; 
-        left: 0;
-        width: 100vw; 
-        height: 100vh;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
         background: #000 !important;
-        z-index: 10000; /* Par-dessus tout */
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        z-index: 10000;
+        
+        /* --- CENTRAGE TOTAL --- */
+        flex-direction: column;    /* Empile les éléments (titre, texte, image) */
+        justify-content: center;   /* Centre verticalement (haut/bas) */
+        align-items: center;       /* Centre horizontalement (gauche/droite) */
+        
         text-align: center;
         color: white;
-        /* POLICE NERD */
-        font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Mono", "Courier New", monospace !important;
+        font-family: "SF Mono", "Monaco", "Courier New", monospace !important;
     }
 
-    /* Cache le reste du site sur mobile */
-    #main-finder, #dock, .secondary-window { 
-        display: none !important; 
+    .mobile-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Force tout le contenu interne à se centrer */
+        width: 100%;
+    }
+
+    .mobile-boat-img {
+        display: block;
+        max-width: 85%;      /* L'image prend la largeur de l'écran sans déborder */
+        max-height: 40vh;    /* Ne dépasse pas 40% de la hauteur de l'écran */
+        object-fit: contain; /* Garde les proportions sans zoomer/déformer */
+        margin-top: 30px;    /* Espace propre sous le texte */
+        border-radius: 4px;  /* Petit détail propre */
     }
 
     .error-title {
         font-size: 24px;
         letter-spacing: 4px;
         margin-bottom: 10px;
-        font-weight: bold;
-    }
-
-    .welcome-text {
-        font-size: 14px;
-        margin-bottom: 20px;
-        padding: 0 30px;
-        line-height: 1.5;
-        opacity: 0.9;
-    }
-
-.mobile-boat-img {
-        display: block;
-        margin: 20px auto 0 auto; /* Centre l'image et ajoute de l'espace au-dessus */
-        
-        /* On limite la taille pour que l'image ne dépasse JAMAIS */
-        max-width: 70%;      /* Prend 70% de la largeur du téléphone */
-        max-height: 30vh;    /* Ne dépasse pas 30% de la hauteur de l'écran */
-        
-        /* LA MAGIE : garde l'image entière sans la déformer */
-        object-fit: contain; 
-        border-radius: 8px;  /* Optionnel : adoucit les coins de la photo */
     }
 }
+
 
 /* --- 2. FENÊTRE PRINCIPALE (FINDER) --- */
 #main-finder {
