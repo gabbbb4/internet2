@@ -17,16 +17,21 @@ body {
     overflow: hidden;
 }
 
-/* --- BLOCAGE MOBILE --- */
-#mobile-blocker { display: none; }
+/* --- BLOCAGE MOBILE (CORRIGÉ) --- */
+#mobile-blocker { 
+    display: none; 
+}
 
 @media (max-width: 768px) {
     #mobile-blocker {
         display: flex !important;
         position: fixed;
-        top: 0; left: 0; width: 100vw; height: 100vh;
-        background: #000;
-        z-index: 9999;
+        top: 0; 
+        left: 0; 
+        width: 100vw; 
+        height: 100vh;
+        background: #000 !important; /* Noir total */
+        z-index: 10000; /* On augmente pour être sûr d'être devant tout */
         justify-content: center;
         align-items: center;
         flex-direction: column;
@@ -34,20 +39,35 @@ body {
         color: white;
     }
 
-    #main-finder, #dock, .secondary-window { display: none !important; }
+    /* On cache tout le reste */
+    #main-finder, #dock, .secondary-window { 
+        display: none !important; 
+    }
+
+    /* Style pour le titre "System Error" */
+    .error-title {
+        font-family: monospace;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: white;
+    }
 
     .welcome-text {
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 20px;
-        padding: 0 20px;
+        padding: 0 30px;
+        line-height: 1.4;
+        color: #ccc; /* Un gris clair pour le message secondaire */
     }
 
     .ascii-boat {
         font-family: 'Courier New', Courier, monospace;
-        color: #00d2ff;
-        font-size: 12px; /* Un peu plus petit pour mobile */
+        color: white; /* Tu le voulais en blanc :) */
+        font-size: 12px;
         line-height: 1.2;
         white-space: pre;
+        margin-top: 20px;
     }
 }
 
@@ -103,11 +123,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    
-    /* Correction ici : on force l'empilement vertical */
     display: none; 
     flex-direction: column !important; 
-    
     z-index: 1000;
     width: fit-content; 
     height: fit-content;
@@ -119,7 +136,6 @@ body {
     box-shadow: 0 25px 50px rgba(0,0,0,0.5);
 }
 
-/* On s'assure que la toolbar prend bien toute la largeur de l'image */
 .secondary-window .toolbar {
     width: 100%;
     box-sizing: border-box;
