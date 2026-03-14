@@ -73,19 +73,20 @@ body {
         opacity: 0.8; /* Légère transparence pour le message secondaire */
     }
 
-    /* --- REMETTRE LE BATEAU EN BLANC --- */
-    .ascii-boat {
-        color: white; /* Bateau blanc comme demandé */
-        font-size: 12px;
-        line-height: 1.2;
-        margin-top: 30px;
-        white-space: pre; /* Garde les espaces */
-        
-        /* On renforce la police monospace ici aussi pour être sûr */
-        font-family: 'Courier New', Courier, monospace;
-    }
+   /* --- REMETTRE LE BATEAU EN BLANC ET MONOSPACE STICTE --- */
+.ascii-boat {
+    color: white !important; /* Bateau blanc, on force avec !important */
+    
+    /* --- CHANGEMENT DE POLICE STRICT (LOOK NERD) --- */
+    /* 'Courier New' et 'Courier' sont les polices monospace les plus compatibles. */
+    /* 'monospace' est la valeur de secours si les autres ne sont pas dispos. */
+    font-family: 'Courier New', Courier, monospace !important;
+    
+    font-size: 12px; /* Un peu plus petit pour mobile */
+    line-height: 1.2;
+    margin-top: 30px;
+    white-space: pre !important; /* Garde les espaces TELS QUELS, on force avec !important */
 }
-
 /* --- FENÊTRE PRINCIPALE --- */
 #main-finder {
     width: 900px;
