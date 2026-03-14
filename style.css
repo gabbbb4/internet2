@@ -62,12 +62,18 @@ body {
         opacity: 0.9;
     }
 
-    .mobile-boat-img {
-            max-width: 250px;  /* Ajuste la largeur maximum */
-            height: auto;      /* Garde les proportions */
-            margin-top: 30px;  /* Espace au-dessus */
-            display: block;    /* Pour le centrage */
-        }
+.mobile-boat-img {
+        display: block;
+        margin: 20px auto 0 auto; /* Centre l'image et ajoute de l'espace au-dessus */
+        
+        /* On limite la taille pour que l'image ne dépasse JAMAIS */
+        max-width: 70%;      /* Prend 70% de la largeur du téléphone */
+        max-height: 30vh;    /* Ne dépasse pas 30% de la hauteur de l'écran */
+        
+        /* LA MAGIE : garde l'image entière sans la déformer */
+        object-fit: contain; 
+        border-radius: 8px;  /* Optionnel : adoucit les coins de la photo */
+    }
 }
 
 /* --- 2. FENÊTRE PRINCIPALE (FINDER) --- */
