@@ -17,39 +17,50 @@ body {
     overflow: hidden;
 }
 
-/* --- BLOCAGE MOBILE (CORRIGÉ) --- */
-#mobile-blocker { 
-    display: none; 
+/* --- 1. ÉTAT PAR DÉFAUT (PC) --- */
+#mobile-blocker {
+    display: none; /* On cache tout sur PC */
 }
 
+/* --- 2. ÉTAT MOBILE (Téléphone) --- */
 @media (max-width: 768px) {
+    body {
+        /* On force le fond noir du body sur mobile pour qu'aucun espace blanc n'apparaisse */
+        background: #000 !important; 
+    }
+
     #mobile-blocker {
-        display: flex !important;
+        display: flex !important; /* On affiche le bloqueur */
         position: fixed;
-        top: 0; 
-        left: 0; 
-        width: 100vw; 
+        top: 0;
+        left: 0;
+        width: 100vw;
         height: 100vh;
-        background: #000 !important; /* Noir total */
+        background: #000; /* Fond noir total */
+        
+        /* --- CHANGEMENT DE POLICE GLOBAL (LOOK NERD) --- */
+        /* On utilise 'monospace' pour que toutes les lettres aient la même largeur */
+        font-family: 'Courier New', Courier, monospace;
+        color: white; /* Tout le texte par défaut est blanc */
+        
         z-index: 10000; /* On augmente pour être sûr d'être devant tout */
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
         text-align: center;
-        color: white;
     }
 
-    /* On cache tout le reste */
-    #main-finder, #dock, .secondary-window { 
-        display: none !important; 
+    /* On cache le Finder et le Dock pour qu'ils ne chargent pas derrière */
+    #main-finder, #dock, .secondary-window {
+        display: none !important;
     }
 
-    /* Style pour le titre "System Error" */
+    /* Style pour le titre "System Error" (si tu l'as ajouté) */
     .error-title {
-        font-family: monospace;
         font-size: 28px;
         font-weight: bold;
         margin-bottom: 10px;
+        letter-spacing: 2px; /* Espacement pour le look 'code' */
         color: white;
     }
 
@@ -58,16 +69,20 @@ body {
         margin-bottom: 20px;
         padding: 0 30px;
         line-height: 1.4;
-        color: #ccc; /* Un gris clair pour le message secondaire */
+        color: #fff; /* Message principal en blanc */
+        opacity: 0.8; /* Légère transparence pour le message secondaire */
     }
 
+    /* --- REMETTRE LE BATEAU EN BLANC --- */
     .ascii-boat {
-        font-family: 'Courier New', Courier, monospace;
-        color: white; /* Tu le voulais en blanc :) */
+        color: white; /* Bateau blanc comme demandé */
         font-size: 12px;
         line-height: 1.2;
-        white-space: pre;
-        margin-top: 20px;
+        margin-top: 30px;
+        white-space: pre; /* Garde les espaces */
+        
+        /* On renforce la police monospace ici aussi pour être sûr */
+        font-family: 'Courier New', Courier, monospace;
     }
 }
 
